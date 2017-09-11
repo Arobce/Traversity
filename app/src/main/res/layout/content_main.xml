@@ -39,6 +39,8 @@
                 android:layout_below="@+id/featured_tracks"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
+                android:clickable="true"
+                android:onClick="routeClick"
                 android:orientation="vertical">
 
                 <ImageView
