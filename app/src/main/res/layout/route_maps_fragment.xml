@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/relativeLayoutRoute"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagetrans"
+        android:layout_alignTop="@+id/map"
+        android:layout_alignBottom="@+id/map"
+        android:layout_alignEnd="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignStart="@+id/map"
+        android:alpha="0"/>
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</FrameLayout>
+</RelativeLayout>

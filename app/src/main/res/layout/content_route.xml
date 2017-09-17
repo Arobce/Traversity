@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedRoute"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.roshan.traversity.RouteActivity"
-    tools:showIn="@layout/activity_route"
-    android:fillViewport="true">
+    tools:showIn="@layout/activity_route">
 
 
     <RelativeLayout
@@ -34,26 +35,24 @@
                 android:text="Center" />
 
             <!--<android.support.design.widget.TabItem-->
-                <!--android:id="@+id/tab3fragment"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Right" />-->
+            <!--android:id="@+id/tab3fragment"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Right" />-->
         </android.support.design.widget.TabLayout>
-
 
 
         <android.support.v4.view.ViewPager
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_below="@+id/tabbar" >
+            android:layout_below="@+id/tabbar"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </android.support.v4.view.ViewPager>
 
         <!--============-->
 
 
-
     </RelativeLayout>
-</android.support.v4.widget.NestedScrollView>
+</android.widget.RelativeLayout>

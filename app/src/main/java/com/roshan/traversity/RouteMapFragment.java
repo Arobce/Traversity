@@ -14,18 +14,26 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 /**
  * Created by Roshan on 9/14/2017.
@@ -46,6 +54,9 @@ public class RouteMapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.route_maps_fragment,container,false);
+
+
+
         return mView;
     }
 
@@ -71,6 +82,7 @@ public class RouteMapFragment extends Fragment implements OnMapReadyCallback {
 
         mapView= (MapView) mView.findViewById(R.id.map);
 
+
         if(mapView!=null){
 
             mapView.onCreate(null);
@@ -79,18 +91,29 @@ public class RouteMapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    //add destination markers
+
+    public void addMarkersForDestination(GoogleMap googleMap){
+        LatLng syambhu = new LatLng(27.7148176,85.2902891);
+        LatLng bauddha = new LatLng(27.721378,85.3619399);
+
+        googleMap.addMarker(new MarkerOptions().position(syambhu).title("Sywambhunath")
+        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        googleMap.addMarker(new MarkerOptions().position(bauddha).title("Baudhanath")
+        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         MapsInitializer.initialize(getContext());
 
+
         mgoogleMap=googleMap;
         mgoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        addMarkersForDestination(mgoogleMap);
 
-        LatLng everest = new LatLng(27.9878493, 86.9162713);
-
-        mgoogleMap.addMarker(new MarkerOptions().position(everest).title("Liberty").snippet("Lets go"));
-//        mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(everest,10));
 
 
         //get current lat lng
@@ -101,7 +124,6 @@ public class RouteMapFragment extends Fragment implements OnMapReadyCallback {
 
                 LatLng currLocation = new LatLng(location.getLatitude(),location.getLongitude());
                 mgoogleMap.addMarker(new MarkerOptions().position(currLocation).title("Your current location"));
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLocation,12));
             }
 
             @Override
