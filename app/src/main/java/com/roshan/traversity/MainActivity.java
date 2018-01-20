@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,9 +15,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Adapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.roshan.traversity.Models.Routes;
+import com.roshan.traversity.RecyclerView.RouteAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    RecyclerView recyclerView;
+    RouteAdapter routeAdapter;
+
+    List<Routes> routesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +70,26 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+//        datafetcher();
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        routesList = new ArrayList<Routes>();
+        routesList.add(
+              new Routes(
+                1,1,"Buddha","","","https://www.diamondway-buddhism.org/images/Ghandara_Buddha_Statue.jpg"
+        ));
+
+
+        routeAdapter = new RouteAdapter(this,routesList);
+
+        recyclerView.setAdapter(routeAdapter);
+
+
     }
 
     @Override
@@ -73,6 +122,34 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //fetches data from api
+    public void datafetcher(){
+        String url = "http://192.168.100.4/testapi.php";
+        final TextView textView = (TextView) findViewById(R.id.route_title);
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    textView.setText(response.getString("name"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                textView.setText("");
+                error.printStackTrace();
+            }
+        });
+
+        Singleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

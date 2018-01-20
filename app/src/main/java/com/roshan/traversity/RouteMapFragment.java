@@ -56,7 +56,6 @@ public class RouteMapFragment extends Fragment implements OnMapReadyCallback {
         mView = inflater.inflate(R.layout.route_maps_fragment,container,false);
 
 
-
         return mView;
     }
 
@@ -143,15 +142,15 @@ public class RouteMapFragment extends Fragment implements OnMapReadyCallback {
         };
 
         if(Build.VERSION.SDK_INT < 23){
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            LatLng currLocation = new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
-            mgoogleMap.addMarker(new MarkerOptions().position(currLocation).title("Your current location"));
-            mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLocation,12));
-
+                LatLng currLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                mgoogleMap.addMarker(new MarkerOptions().position(currLocation).title("Your current location"));
+                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLocation, 12));
+            }
         }else{
 
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
