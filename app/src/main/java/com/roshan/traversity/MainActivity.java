@@ -26,12 +26,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.roshan.traversity.Models.Routes;
 import com.roshan.traversity.RecyclerView.RouteAdapter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-//        datafetcher();
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -79,11 +80,8 @@ public class MainActivity extends AppCompatActivity
 
 
         routesList = new ArrayList<Routes>();
-        routesList.add(
-              new Routes(
-                1,1,"Buddha","","","https://www.diamondway-buddhism.org/images/Ghandara_Buddha_Statue.jpg"
-        ));
 
+        datafetcher(routesList);
 
         routeAdapter = new RouteAdapter(this,routesList);
 
@@ -125,19 +123,42 @@ public class MainActivity extends AppCompatActivity
     }
 
     //fetches data from api
-    public void datafetcher(){
+    public void datafetcher(List<Routes> list){
         String url = "http://192.168.100.4/testapi.php";
-        final TextView textView = (TextView) findViewById(R.id.route_title);
+
+        final TextView textView = findViewById(R.id.route_title);
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, null,new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    textView.setText(response.getString("name"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            public void onResponse(JSONArray response) {
+
+                for(int i=0; i<=response.length(); i++){
+
+                    try {
+
+                        JSONObject route = response.getJSONObject(i);
+
+                        int id = Integer.parseInt(route.getString("id"));
+                        String title = route.getString("title");
+                        String category = route.getString("category");
+                        String description = route.getString("description");
+                        String thumbnail = route.getString("thumbnail");
+                        int user_id = Integer.parseInt(route.getString("user_id"));
+
+                        routesList.add(
+                                new Routes(
+                                        id,user_id,title,category,description,thumbnail
+                        ));
+
+                    } catch (JSONException e) {
+
+                        e.printStackTrace();
+
+                    }
+
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
