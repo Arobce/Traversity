@@ -81,11 +81,18 @@ public class MainActivity extends AppCompatActivity
 
         routesList = new ArrayList<Routes>();
 
-        datafetcher(routesList);
+
+//        routesList.add(
+//                new Routes(
+//                        1,2,"Durbar Squares","Cultural","Feel the durbar square","https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Durbar_Square_2010.jpg/1200px-Durbar_Square_2010.jpg"
+//                ));
+
+        datafetcher();
 
         routeAdapter = new RouteAdapter(this,routesList);
 
         recyclerView.setAdapter(routeAdapter);
+
 
 
     }
@@ -123,17 +130,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     //fetches data from api
-    public void datafetcher(List<Routes> list){
-        String url = "http://192.168.100.4/testapi.php";
-
-        final TextView textView = findViewById(R.id.route_title);
+    public void datafetcher(){
+        String url = "http://192.168.100.4/routesapi.php";
 
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
-                for(int i=0; i<=response.length(); i++){
+                for(int i=0; i<response.length(); i++){
 
                     try {
 
@@ -163,7 +168,6 @@ public class MainActivity extends AppCompatActivity
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                textView.setText("");
                 error.printStackTrace();
             }
         });
@@ -198,8 +202,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void routeClick(View view){
-        Intent intent = new Intent(getApplicationContext(),RouteActivity.class);
-        startActivity(intent);
-    }
+
 }
