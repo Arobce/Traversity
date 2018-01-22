@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.roshan.traversity.LocationActivity;
 import com.roshan.traversity.Models.Location;
 import com.roshan.traversity.Models.Routes;
 import com.roshan.traversity.R;
@@ -86,15 +87,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
             int position = getAdapterPosition();
             Location location = this.locationList.get(position);
-//
-//            Intent intent = new Intent(mCtx, RouteActivity.class);
-//            intent.putExtra("id",route.getId());
-//            intent.putExtra("user_id",route.getUser_id());
-//            intent.putExtra("title",route.getTitle());
-//            intent.putExtra("category",route.getCategory());
-//            intent.putExtra("thumbnail",route.getThumbnail());
-//            intent.putExtra("description",route.getDescription());
-//            this.ctx.startActivity(intent);
+
+            Intent intent = new Intent(mCtx, LocationActivity.class);
+            intent.putExtra("id",location.getId());
+            intent.putExtra("user_id",location.getUser_id());
+            intent.putExtra("title",location.getTitle());
+            intent.putExtra("category",location.getCategory());
+            intent.putExtra("thumbnail",location.getThumbnail());
+            intent.putExtra("description",location.getDescription());
+            this.ctx.startActivity(intent);
         }
     }
 

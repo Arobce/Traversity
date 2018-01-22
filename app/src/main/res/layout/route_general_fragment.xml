@@ -156,7 +156,7 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/description"
+            android:layout_alignStart="@+id/locationDescription"
             android:layout_below="@+id/route_description"
             android:layout_marginTop="29dp"
             android:text="Locations"
@@ -165,7 +165,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/locationDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -180,8 +180,8 @@
             android:id="@+id/route_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/description"
-            android:layout_below="@+id/description"
+            android:layout_alignStart="@+id/locationDescription"
+            android:layout_below="@+id/locationDescription"
             android:layout_marginStart="12dp"
             android:layout_marginTop="11dp"
             android:text="Visit the three main Buddhist sites in Nepal. " />

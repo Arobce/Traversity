@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.roshan.traversity.LocationActivity;
+import com.roshan.traversity.Models.Location;
 import com.roshan.traversity.Models.Routes;
 import com.roshan.traversity.R;
 import com.roshan.traversity.RouteActivity;

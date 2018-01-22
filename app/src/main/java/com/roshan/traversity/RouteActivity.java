@@ -1,5 +1,6 @@
 package com.roshan.traversity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -48,7 +49,8 @@ public class RouteActivity extends AppCompatActivity {
     RouteGeneralFragment routeGeneralFragment = new RouteGeneralFragment();
     List<Integer> locationId = new ArrayList<>();
     List<Location> locationList;
-
+    LocationAdapter locationAdapter;
+    Context ctx = this;
 
 
 
