@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <Spinner
+        android:id="@+id/spinnerSourceLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:contextClickable="true"
+        android:spinnerMode="dropdown" />
+
+    <EditText
+        android:id="@+id/editTextSourceText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerSourceLanguage"
+        android:layout_below="@+id/spinnerSourceLanguage"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/enter_text_to_translate"
+        android:inputType="text"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/spinnerTranslationLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerSourceLanguage"
+        android:layout_below="@+id/editTextSourceText"
+        android:layout_marginTop="46dp"
+        android:contextClickable="true"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textViewTranslatedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerSourceLanguage"
+        android:layout_below="@+id/spinnerTranslationLanguage"
+        android:layout_marginTop="20dp"
+        android:text="Translated Text"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

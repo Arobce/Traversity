@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <Spinner
+        android:id="@+id/spinnerSourceCurrency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:contextClickable="true"
+        android:spinnerMode="dropdown" />
+
+    <EditText
+        android:id="@+id/editTextSourceAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerSourceCurrency"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/enter_the_amount_to_convert"
+        android:inputType="text|numberSigned"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/spinnerConversionCurrency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerSourceCurrency"
+        android:layout_below="@+id/editTextSourceAmount"
+        android:layout_marginTop="46dp"
+        android:contextClickable="true"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textViewTranslatedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerSourceCurrency"
+        android:layout_below="@+id/spinnerConversionCurrency"
+        android:layout_marginTop="20dp"
+        android:text="$0.0"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -50,6 +50,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.roshan.traversity.MainActivity" />
         </activity>
+        <activity
+            android:name=".ToolsActivity"
+            android:label="@string/title_activity_tools"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.roshan.traversity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

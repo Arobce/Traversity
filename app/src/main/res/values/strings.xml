@@ -27,4 +27,14 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_tools">ToolsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tools">Tools</string>
+    <string name="translator">Translator</string>
+    <string name="currency_converter">Currency Converter</string>
+    <string name="enter_text_to_translate">Enter text to translate</string>
+    <string name="enter_the_amount_to_convert">Enter the amount to convert</string>
 </resources>
