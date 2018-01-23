@@ -125,6 +125,12 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_login){
+
+            Intent loginIntent = new Intent(this,LoginActivity.class);
+            startActivity(loginIntent);
+
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
