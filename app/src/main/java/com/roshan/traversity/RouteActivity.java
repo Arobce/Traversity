@@ -13,6 +13,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -66,12 +67,27 @@ public class RouteActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final Boolean[] addedToFavorites = {false};
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if(!addedToFavorites[0]) {
+                    Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                    fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_fab_active));
+                    addedToFavorites[0] = true;
+                } else {
+
+                    Snackbar.make(view, "Removed from favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                    fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_fab_inactive));
+                    addedToFavorites[0] = false;
+
+                }
             }
         });
 

@@ -96,4 +96,9 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="login">Login</string>
+    <string name="info">Info</string>
+    <string name="things_to_do">Things to Do</string>
+    <string name="nearby">Nearby</string>
+    <string name="places_to_go">Places to go</string>
+    <string name="check_list">Check List</string>
 </resources>

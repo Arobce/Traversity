@@ -20,19 +20,25 @@
             android:id="@+id/tabbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp">
+            android:layout_marginTop="20dp">
 
             <android.support.design.widget.TabItem
-                android:id="@+id/tab1fragment"
+                android:id="@+id/tabFragmentInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Left" />
+                android:text="@string/info" />
 
             <android.support.design.widget.TabItem
-                android:id="@+id/tab2fragment"
+                android:id="@+id/tabFragmentPlaces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Center" />
+                android:text="@string/places_to_go" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabFragmentCheckList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/check_list" />
 
             <!--<android.support.design.widget.TabItem-->
             <!--android:id="@+id/tab3fragment"-->
